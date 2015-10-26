@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CardReader</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="NFC_not_support">This device does not support NFC</string>
+    <string name="NFC_not_open">NFC is disabled. Please lunch NFC</string>
+    <string name="title_activity_perso">Perso</string>
+    <string name="title_activity_sync_data">SyncData</string>
+
+    <string name="main_title">數位點名系統</string>
+    <string name="main_first">首次使用</string>
+    <string name="main_submit">同步資料</string>
+
+    <string name="perso_cardNum">卡號</string>
+    <string name="perso_studentId">學號</string>
+    <string name="perso_studentname">姓名</string>
+    <string name="perso_hintID">Z99000000</string>
+    <string name="perso_hintName">Mark</string>
+    <string name="perso_department">系級</string>
+    <string name="perso_hintDep">交管100</string>
+    <string name="perso_cancel">取消</string>
+    <string name="perso_submit">確認</string>
+
+    <string name="sync_title">同步資料</string>
+    <string name="sync_class">課程名稱</string>
+    <string name="sync_cancel">取消</string>
+    <string name="sync_submit">同步</string>
+</resources>
