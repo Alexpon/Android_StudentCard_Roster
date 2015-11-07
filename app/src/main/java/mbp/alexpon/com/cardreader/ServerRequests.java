@@ -16,6 +16,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -202,7 +203,7 @@ public class ServerRequests {
             HttpPost post = new HttpPost(SERVER_ADDRESS + "NUPerso_StudentCard.php");
 
             try {
-                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                post.setEntity(new UrlEncodedFormEntity(dataToSend, HTTP.UTF_8));
                 client.execute(post);
           } catch (Exception e) {
                 e.printStackTrace();
@@ -267,7 +268,7 @@ public class ServerRequests {
             HttpPost post = new HttpPost(SERVER_ADDRESS + "NURoster_StudentCard.php");
 
             try {
-                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                post.setEntity(new UrlEncodedFormEntity(dataToSend, HTTP.UTF_8));
                 client.execute(post);
             } catch (Exception e) {
                 e.printStackTrace();
