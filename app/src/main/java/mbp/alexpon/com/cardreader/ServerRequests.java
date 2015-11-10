@@ -29,19 +29,13 @@ import java.util.ArrayList;
 public class ServerRequests {
     private ProgressDialog progressDialog;
     public static final int CONNECTION_TIMEOUT = 1000 * 15;
-    //public static final String SERVER_ADDRESS = "http://ponpon88810.netii.net/";
-    public static final String SERVER_ADDRESS = "http://140.116.97.92/";
+    public static final String SERVER_ADDRESS = "http://Address/";
 
     public ServerRequests(Context context) {
         progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Processing");
         progressDialog.setMessage("Please wait...");
-    }
-
-    public void fetchUserInBackground(User user, GetUserCallBack userCallBack){
-        progressDialog.show();
-        new fetchUserInBackground(user, userCallBack).execute();
     }
 
     public void fetchCourseInBackground(GetCourseCallBack courseCallBack){
@@ -60,63 +54,6 @@ public class ServerRequests {
         progressDialog.show();
         new storeRosterDataAsyncTask(index, student, year, month, date,
                 hour, minute, second, course, userCallback).execute();
-    }
-
-    public class fetchUserInBackground extends AsyncTask<Void, Void, User> {
-
-        User user;
-        GetUserCallBack userCallBack;
-
-        public fetchUserInBackground(User user, GetUserCallBack userCallBack) {
-            this.user = user;
-            this.userCallBack = userCallBack;
-        }
-
-        @Override
-        protected User doInBackground(Void... params) {
-
-            User returnedUser = null;
-            String result = "";
-
-            ArrayList<NameValuePair> dataToSend = new ArrayList<>();
-            dataToSend.add(new BasicNameValuePair("card_id", user.card_id));
-
-            HttpParams httpParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParams, CONNECTION_TIMEOUT);
-            HttpConnectionParams.setSoTimeout(httpParams, CONNECTION_TIMEOUT);
-
-            HttpClient client = new DefaultHttpClient(httpParams);
-            HttpPost httpPost = new HttpPost(SERVER_ADDRESS + "NUFetch_StudentCard.php");
-
-            try {
-                httpPost.setEntity(new UrlEncodedFormEntity(dataToSend));
-                HttpResponse httpResponse = client.execute(httpPost);
-                HttpEntity httpEntity = httpResponse.getEntity();
-                result = EntityUtils.toString(httpEntity);
-                JSONObject jsonObject = new JSONObject(result);
-
-                if(jsonObject.length() == 0){
-                    returnedUser = null;
-                }
-                else{
-                    String student_id = jsonObject.getString("student_id");
-                    String student_name = jsonObject.getString("student_name");
-                    String department = jsonObject.getString("department");
-                    returnedUser = new User(user.card_id, student_id, student_name, department);
-                }
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            return returnedUser;
-        }
-
-        @Override
-        protected void onPostExecute(User returnedUser) {
-            progressDialog.dismiss();
-            userCallBack.done(returnedUser);
-            super.onPostExecute(returnedUser);
-        }
     }
 
     public class fetchCourseAsyncTask extends AsyncTask<Void, Void, Course> {
