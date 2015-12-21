@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.nfc.NfcAdapter;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.text.method.ScrollingMovementMethod;
@@ -35,6 +39,9 @@ public class MainActivity extends Activity {
     private PendingIntent pendingIntent;
     private IntentFilter[] intentFilter;
 
+    private SoundPool soundPool;
+    private int sneezeId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +51,24 @@ public class MainActivity extends Activity {
         pendingSetting();
         myNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         checkNfc();
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            AudioAttributes aa = new AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .build();
+
+            soundPool = new SoundPool.Builder()
+                    .setMaxStreams(10)
+                    .setAudioAttributes(aa)
+                    .build();
+            sneezeId = soundPool.load(this, R.raw.bee, 1);
+        }
+        else{
+            soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 1);
+            sneezeId = soundPool.load(this, R.raw.bee, 1);
+        }
+
     }
 
     public void inits(){
@@ -131,7 +156,10 @@ public class MainActivity extends Activity {
         index++;
 
         data_area.append(card_id + " " + dateTime.year + "/" + dateTime.month + "/" +
-            dateTime.date + " " + dateTime.hour + ":" + dateTime.minute + ":" + dateTime.second + "\n");
+                dateTime.date + " " + dateTime.hour + ":" + dateTime.minute + ":" + dateTime.second + "\n");
+
+        soundPool.play(sneezeId, 1, 1, 0, 0, 1);
+
         super.onNewIntent(intent);
     }
 
@@ -171,63 +199,4 @@ public class MainActivity extends Activity {
         int second = t.second;
         return new DateTime(year, month, date, hour, minute, second);
     }
-/*
-    private void checkUser(final User user){
-        ServerRequests serverRequests = new ServerRequests(this);
-        serverRequests.fetchUserInBackground(user, new GetUserCallBack() {
-            @Override
-            public void done(User returnedUser) {
-                if(returnedUser==null){
-                    Bundle bundle = new Bundle();
-                    bundle.putString("card_id", user.card_id);
-                    Intent intent = new Intent(MainActivity.this, Perso.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }
-                else {
-                    showAlertDialog(returnedUser);
-                }
-            }
-        });
-    }
-
-    private void showAlertDialog(final User user){
-        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
-        myAlertDialog.setTitle("點名");
-        myAlertDialog.setMessage("卡號：" + user.card_id + "\n姓名："
-                + user.student_name + "\n學號：" + user.student_id);
-        myAlertDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        myAlertDialog.setPositiveButton("確認", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                roster(user);
-            }
-        });
-        myAlertDialog.show();
-    }
-
-    private void roster(User user){
-        Time t = new Time(Time.getCurrentTimezone());
-        t.setToNow();
-        int year = t.year;
-        int month = t.month+1; //?
-        int date = t.monthDay;
-        int hour = t.hour; // 0-23
-        int minute = t.minute;
-        int second = t.second;
-        DateTime dateTime = new DateTime(year, month, date, hour, minute, second);
-
-        ServerRequests serverRequests = new ServerRequests(this);
-        serverRequests.storeRosterDataInBackground(user, dateTime, new GetUserCallBack() {
-            @Override
-            public void done(User returnedUser) {
-                Toast.makeText(getApplicationContext(), "Roster Success!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-*/
 }

@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\alexpon\AndroidStudioProjects\CardReader\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\libs\internal_impl-21.0.2.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f">
-        <dex dex="C:\Users\alexpon\AndroidStudioProjects\CardReader\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.2-e1f23afa139bc4fada3dee62c639e13b7aebde6f.jar" />
-    </item>
-    <item
-        jar="C:\Users\alexpon\AndroidStudioProjects\CardReader\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\classes.jar"
+        jar="/Users/apple/AndroidStudioProjects/StudentCard_Roster/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3">
-        <dex dex="C:\Users\alexpon\AndroidStudioProjects\CardReader\app\build\intermediates\pre-dexed\debug\classes-d5df1e1d07da217c70fe4bc8e9dcfb9a9b20a2ca.jar" />
+        <dex dex="/Users/apple/AndroidStudioProjects/StudentCard_Roster/app/build/intermediates/pre-dexed/debug/classes-815e503878711ff730e20c4e7c8b35bbeb61b577.jar" />
     </item>
     <item
-        jar="C:\Users\alexpon\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.2\support-annotations-21.0.2.jar"
+        jar="/Users/apple/AndroidStudioProjects/StudentCard_Roster/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/libs/internal_impl-21.0.2.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6">
-        <dex dex="C:\Users\alexpon\AndroidStudioProjects\CardReader\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.2-29e876ff7db0b0d2f9b976487d44fa86ae96becd.jar" />
+        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f">
+        <dex dex="/Users/apple/AndroidStudioProjects/StudentCard_Roster/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-86aa1ff4ef2fa6b878d1656919dae221f637b70d.jar" />
     </item>
     <item
-        jar="C:\Users\alexpon\AndroidStudioProjects\CardReader\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.2\classes.jar"
+        jar="/Users/apple/AndroidStudioProjects/StudentCard_Roster/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.2/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="7ae2d38807a43b2f2185ff4089a92c790b579e54">
-        <dex dex="C:\Users\alexpon\AndroidStudioProjects\CardReader\app\build\intermediates\pre-dexed\debug\classes-e66f566377db0279612dfe46014ad4043e326b7d.jar" />
+        <dex dex="/Users/apple/AndroidStudioProjects/StudentCard_Roster/app/build/intermediates/pre-dexed/debug/classes-4cdd06c38ce128a8b7b31fb2ce5b3411266b9e61.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.2/support-annotations-21.0.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6">
+        <dex dex="/Users/apple/AndroidStudioProjects/StudentCard_Roster/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.2-b201bc2c383ea2e10b24fc3a5eeb5890c1c9b09e.jar" />
     </item>
 
 </items>

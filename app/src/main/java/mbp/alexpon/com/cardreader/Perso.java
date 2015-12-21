@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.nfc.NfcAdapter;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +30,10 @@ public class Perso extends Activity {
     private Button perso_submit;
     private String get_card_id;
 
+    private SoundPool soundPool;
+    private int sneezeId;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +44,23 @@ public class Perso extends Activity {
 
         pendingSetting();
         myNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            AudioAttributes aa = new AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .build();
+
+            soundPool = new SoundPool.Builder()
+                    .setMaxStreams(10)
+                    .setAudioAttributes(aa)
+                    .build();
+            sneezeId = soundPool.load(this, R.raw.perso, 1);
+        }
+        else{
+            soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 1);
+            sneezeId = soundPool.load(this, R.raw.perso, 1);
+        }
 
     }
 
@@ -101,6 +126,7 @@ public class Perso extends Activity {
     protected void onNewIntent(Intent intent) {
         get_card_id = ByteArrayToHexString(intent.getByteArrayExtra(myNfcAdapter.EXTRA_ID));
         card_id.setText(get_card_id);
+        soundPool.play(sneezeId, 1, 1, 0, 0, 1);
         super.onNewIntent(intent);
     }
 

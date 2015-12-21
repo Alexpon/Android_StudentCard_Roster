@@ -19,7 +19,7 @@
     <string name="perso_hintID">Z99000000</string>
     <string name="perso_hintName">Mark</string>
     <string name="perso_department">系級</string>
-    <string name="perso_hintDep">交管100</string>
+    <string name="perso_hintDep">TCM100</string>
     <string name="perso_cancel">取消</string>
     <string name="perso_submit">確認</string>
 
