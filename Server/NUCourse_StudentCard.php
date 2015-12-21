@@ -1,7 +1,8 @@
+
 <?php
-	$con = mysqli_connect("address", "un", "pw", "db");
+	$con = mysqli_connect("address", "username", "password", "table");
 	
-	$statement = mysqli_prepare($con, 'SELECT * FROM class_table');
+	$statement = mysqli_prepare($con, 'SELECT * FROM nu_studentcard_class');
 	mysqli_stmt_execute($statement);
 	
 	mysqli_stmt_store_result($statement);

@@ -1,10 +1,11 @@
+
 <?php
-	$con = mysqli_connect("address", "un", "pw", "db");
+	$con = mysqli_connect("address", "username", "password", "table");
 	
 	$course = $_POST["course"];
 	$index = $_POST["index"];
 	
-	$statement = mysqli_prepare($con, 'SELECT time FROM class_table WHERE class_name = ?');
+	$statement = mysqli_prepare($con, 'SELECT time FROM nu_studentcard_class WHERE class_name = ?');
 	mysqli_stmt_bind_param($statement, "s", $course);
 	mysqli_stmt_execute($statement);
 	mysqli_stmt_store_result($statement);
@@ -30,7 +31,7 @@
 		
 		
 		
-		$statement1 = mysqli_prepare($con, 'SELECT * FROM user_table WHERE card_id = ?');
+		$statement1 = mysqli_prepare($con, 'SELECT * FROM nu_studentcard_user WHERE card_id = ?');
 		mysqli_stmt_bind_param($statement1, "s", $student);
 		mysqli_stmt_execute($statement1);
 
@@ -39,16 +40,17 @@
 
 		if(mysqli_stmt_fetch($statement1)){
 						
-			//$time=$year.'-'.$month.'-'.$date.' '.$hour.':'.$minute.':'.$second;
 			$day=$year.'-'.$month.'-'.$date;
 			$time=$hour.':'.$minute.':'.$second;
+			$subCourse = mb_substr( $course,0,-3,"utf-8");
+			
 			if($time > $course_time){
-				$statement2 = mysqli_prepare($con, "INSERT INTO roster_table (card_id, student_id, student_name, class_name, department, date, time, status) 
-					VALUES ('$student', '$student_id', '$student_name', '$course', '$department', '$day', '$time', 'late')");
+				$statement2 = mysqli_prepare($con, "INSERT INTO nu_studentcard_roster (card_id, student_id, student_name, class_name, department, date, time, status) 
+					VALUES ('$student', '$student_id', '$student_name', '$subCourse', '$department', '$day', '$time', 'late')");
 			}
 			else{
-				$statement2 = mysqli_prepare($con, "INSERT INTO roster_table (card_id, student_id, student_name, class_name, department, date, time, status) 
-					VALUES ('$student', '$student_id', '$student_name', '$course', '$department', '$day', '$time', 'on time')");
+				$statement2 = mysqli_prepare($con, "INSERT INTO nu_studentcard_roster (card_id, student_id, student_name, class_name, department, date, time, status) 
+					VALUES ('$student', '$student_id', '$student_name', '$subCourse', '$department', '$day', '$time', 'on time')");
 			}
 			mysqli_stmt_execute($statement2);
 			mysqli_stmt_close($statement2);
