@@ -43,5 +43,5 @@ width:200px;}
 ?>
 
   </body>
-  <meta content='3'; url=http://140.116.97.92/StudentCardRoster/Student_Roster.php' http-equiv='refresh'>
+  <meta content='3'; url=http://140.116.97.92/StudentCardRoster/test.php' http-equiv='refresh'>
 </html>

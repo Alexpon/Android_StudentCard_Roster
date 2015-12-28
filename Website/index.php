@@ -20,7 +20,7 @@
 			}
 		
 			html, body{
-				background:url('background.jpg');
+				background:url('res/background.jpg');
 				align:center;
 				background-size: 100% 100%;
 				width: 100%;
