@@ -95,11 +95,9 @@ public class SyncData extends Activity {
                     spinner.setAdapter(adapter);
                     spinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){
                         public void onItemSelected(AdapterView adapterView, View view, int position, long id){
-                            //Toast.makeText(SyncData.this, "您選擇"+adapterView.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
                             choose_course = returnedCourse.class_name[position];
                         }
                         public void onNothingSelected(AdapterView arg0) {
-                            //Toast.makeText(SyncData.this, "您沒有選擇任何項目", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
