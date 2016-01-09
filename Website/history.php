@@ -19,8 +19,20 @@ width:200px;}
 		Student Card Roster <br>
 	</h1>
 
+<?php
+	$num = $_GET['course'];
+	switch($num){
+		case "10410011":
+			$course_name = "智慧型運輸系統";
+			break;
+		case "10410021":
+			$course_name = "計算機概論";
+			break;	
+	}
+?>
+	
 	<h2>
-		<?php echo $_GET['course'];?> <br>
+		<?php echo $course_name;?> <br>
 		<?php echo $_GET['year']."年".$_GET['month']."月".$_GET['day']."日";?>
 	</h2>
 </center>
@@ -33,7 +45,7 @@ width:200px;}
 		include("conf.php");
 		$d = $_GET['year']."-".$_GET['month']."-".$_GET['day'];
 		$course = $_GET['course'];
-		$result = mysql_query("SELECT * FROM `nu_studentcard_roster` WHERE `date`= '$d' AND `class_name`='$course'");
+		$result = mysql_query("SELECT * FROM `nu_studentcard_roster` WHERE `date`= '$d' AND `class_name`='$course_name'");
 		
 		while($row = mysql_fetch_row($result)){
 			print "<tr><td><h3>".$row[2]."</h3></td><td><h3>".$row[3].

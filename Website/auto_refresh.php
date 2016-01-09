@@ -6,6 +6,19 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		
+		<Style>
+			html, body{
+				background:url('res/auto.jpg');
+				align:center;
+				background-size: 100% 100%;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				font-family:Verdana, Geneva, sans-serif;
+			}
+		</Style>
 	</head>
 	<body>
 <?php
@@ -17,7 +30,9 @@
 		case "10410021":
 			$course_name = "計算機概論";
 			break;
-		
+		case "10410031":
+			$course_name = "智慧型運輸系統特論";
+			break;
 	}
 	$dd = date("Y-m-d");
 ?>
@@ -57,10 +72,10 @@
 					<td>".$row[6]."</td>
 				  </tr>";
 		}
-?>			  
+?> 
 				</tbody>
 			</table>
 		</div>
 	</body>
-  <meta content='3'; url=http://140.116.97.92/StudentCardRoster/auto_refresh.php' http-equiv='refresh'>
+  <meta content='5'; url=http://140.116.97.92/StudentCardRoster/auto_refresh.php' http-equiv='refresh'>
 </html>
